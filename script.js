@@ -1,9 +1,11 @@
 const map = L.map('map').setView([20.5937, 78.9629], 5);
 
+// Dark mode tiles
 L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
+// Logo icon helper
 function teamIcon(file) {
   return L.icon({
     iconUrl: `logos/${file}`,
@@ -13,6 +15,7 @@ function teamIcon(file) {
   });
 }
 
+// Teams data
 const activeTeams = [
   { name:"CSK", stadium:"M.A. Chidambaram", coords:[13.0636,80.2785], logo:"csk.png", state:"Tamil Nadu", color:"yellow" },
   { name:"MI", stadium:"Wankhede", coords:[18.9388,72.8258], logo:"mi.png", state:"Maharashtra", color:"blue" },
@@ -34,21 +37,39 @@ const defunctTeams = [
   { name:"Gujarat Lions", stadium:"Sardar Patel Stadium", coords:[23.0794,72.6167], logo:"gl.png", state:"Gujarat", color:"orange" }
 ];
 
+// Layers
 const activeLayer = L.layerGroup();
 const defunctLayer = L.layerGroup();
 const stateLayer = L.layerGroup();
 
+let indiaGeoJson = null;
+
+// Add markers
 function addTeamMarkers(teams, layer) {
   teams.forEach(team => {
     const marker = L.marker(team.coords, { icon: teamIcon(team.logo) })
       .bindPopup(`<b>${team.name}</b><br>${team.stadium}`);
+
     marker.on('click', () => {
+      // Zoom to stadium
       map.flyTo(team.coords, 8, { animate:true, duration:1.5 });
+
+      // Pulse animation only for clicked logo
+      const iconEl = marker._icon;
+      if (iconEl) {
+        iconEl.classList.add('pulse');
+        setTimeout(() => iconEl.classList.remove('pulse'), 400);
+      }
+
+      // Flash the state color
+      if (indiaGeoJson) flashState(team, indiaGeoJson);
     });
+
     marker.addTo(layer);
   });
 }
 
+// State coloring
 function addStateColors(teams, layer, geojsonData) {
   teams.forEach(team => {
     L.geoJSON(geojsonData, {
@@ -63,13 +84,25 @@ function addStateColors(teams, layer, geojsonData) {
   });
 }
 
+// Flash highlight on click
+function flashState(team, geojsonData) {
+  const layer = L.geoJSON(geojsonData, {
+    filter: f => f.properties.st_nm === team.state,
+    style: { color: team.color, fillColor: team.color, fillOpacity: 0.8 }
+  }).addTo(map);
+  setTimeout(() => map.removeLayer(layer), 1500);
+}
+
+// Load GeoJSON
 fetch('india.geojson')
   .then(res => res.json())
   .then(data => {
+    indiaGeoJson = data;
     addStateColors(activeTeams, stateLayer, data);
     addStateColors(defunctTeams, defunctLayer, data);
   });
 
+// Add markers
 addTeamMarkers(activeTeams, activeLayer);
 addTeamMarkers(defunctTeams, defunctLayer);
 
@@ -77,6 +110,7 @@ activeLayer.addTo(map);
 stateLayer.addTo(map);
 defunctLayer.addTo(map);
 
+// Toggle logic
 document.getElementById('activeToggle').addEventListener('change', e => {
   if (e.target.checked) map.addLayer(activeLayer);
   else map.removeLayer(activeLayer);

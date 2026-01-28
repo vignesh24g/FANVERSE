@@ -1,5 +1,13 @@
-body { margin:0; padding:0; }
-#map { height:100vh; width:100%; }
+body { 
+  margin:0; 
+  padding:0; 
+}
+
+#map { 
+  height:100vh; 
+  width:100%; 
+}
+
 #legend {
   position: absolute;
   top: 10px;
@@ -11,7 +19,49 @@ body { margin:0; padding:0; }
   font-family: Arial, sans-serif;
   z-index: 1000; /* ensures legend stays above map controls */
 }
+
 #legend h3 {
   margin: 0 0 5px 0;
   font-size: 14px;
+}
+
+/* Glow effect for state polygons */
+.leaflet-interactive {
+  stroke-width: 2;
+  stroke: #fff;
+  filter: drop-shadow(0 0 5px #fff);
+}
+
+/* Popup fade-in */
+.leaflet-popup {
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Stable logo markers with subtle depth */
+.leaflet-marker-icon {
+  filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.5))
+          drop-shadow(0 0 2px rgba(255,255,255,0.3));
+  transform: scale(1);
+  transition: transform 0.25s ease, filter 0.25s ease;
+  border-radius: 50%;
+}
+
+/* Hover animation for logos */
+.leaflet-marker-icon:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.7));
+}
+
+/* Pulse animation for clicked logos */
+.pulse {
+  animation: pulse 0.4s ease;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
