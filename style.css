@@ -1,0 +1,17 @@
+body { margin:0; padding:0; }
+#map { height:100vh; width:100%; }
+#legend {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  z-index: 1000; /* ensures legend stays above map controls */
+}
+#legend h3 {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+}
