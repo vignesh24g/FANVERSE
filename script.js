@@ -30,11 +30,11 @@ const activeTeams = [
 ];
 
 const defunctTeams = [
-  { name:"Kochi Tuskers Kerala", stadium:"Jawaharlal Nehru Stadium", coords:[9.9496,76.2590], logo:"ktk.png", state:"Kerala", color:"violet" },
-  { name:"Pune Warriors India", stadium:"Subrata Roy Sahara Stadium", coords:[18.6715,73.7700], logo:"pwi.png", state:"Maharashtra", color:"brown" },
-  { name:"Deccan Chargers", stadium:"Rajiv Gandhi Intl.", coords:[17.4065,78.5505], logo:"dc_old.png", state:"Telangana", color:"gray" },
-  { name:"Rising Pune Supergiant", stadium:"MCA Stadium", coords:[18.6500,73.7700], logo:"rps.png", state:"Maharashtra", color:"pink" },
-  { name:"Gujarat Lions", stadium:"Sardar Patel Stadium", coords:[23.0794,72.6167], logo:"gl.png", state:"Gujarat", color:"orange" }
+  { name:"Kochi Tuskers Kerala", stadium:"Jawaharlal Nehru Stadium", coords:[9.9496,76.2590], logo:"ktk.png", state:"Kerala", color:"transparent" },
+  { name:"Pune Warriors India", stadium:"Subrata Roy Sahara Stadium", coords:[18.6715,73.7700], logo:"pwi.png", state:"Maharashtra", color:"orange"},
+  { name:"Deccan Chargers", stadium:"Rajiv Gandhi Intl.", coords:[17.4065,79.5505], logo:"dch.png", state:"Telangana", color:"transparent"},
+  { name:"Rising Pune Supergiant", stadium:"MCA Stadium", coords:[18.6500,75.7700], logo:"rpsg.png", state:"Maharashtra", color:"transparent" },
+  { name:"Gujarat Lions", stadium:"Sardar Patel Stadium", coords:[22.0794,72.6167], logo:"gl.png", state:"Gujarat", color:"transparent" }
 ];
 
 // Layers
@@ -99,7 +99,6 @@ fetch('india.geojson')
   .then(data => {
     indiaGeoJson = data;
     addStateColors(activeTeams, stateLayer, data);
-    addStateColors(defunctTeams, defunctLayer, data);
   });
 
 // Add markers
