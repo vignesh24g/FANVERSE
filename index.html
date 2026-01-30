@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>IPL 3D Team Map</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sports Map</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div id="map"></div>
-<div id="legend">
-  <h3>Toggle Teams</h3>
-  <label><input type="checkbox" id="activeToggle" checked> Active Teams</label><br>
-  <label><input type="checkbox" id="defunctToggle" checked> Defunct Teams</label>
-</div>
-<script src="script.js"></script>
+  <div id="map"></div>
+
+  <!-- Burger Menu -->
+  <div id="menu">
+    <div id="burger">&#9776;</div>
+    <div id="menuItems" class="hidden">
+      <h4>Leagues</h4>
+      <button data-league="ipl">IPL</button>
+      <button data-league="pkl">PKL</button>
+      <button data-league="isl">ISL</button>
+      <hr>
+      <h4>Themes</h4>
+      <button data-theme="dark">Dark</button>
+      <button data-theme="light">Light</button>
+      <button data-theme="osm">OSM</button>
+      <button data-theme="satellite">Satellite</button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
