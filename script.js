@@ -2,27 +2,29 @@ const map = L.map('map').setView([20.5937, 78.9629], 5);
 
 // Tile themes
 const themes = {
-  dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CartoDB' }),
+  dark: L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+    maxZoom: 20,
+    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+  }),
   light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CartoDB' }),
   osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' }),
   satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Tiles © Esri' })
 };
 
-// Default theme
 themes.dark.addTo(map);
 let currentTheme = themes.dark;
+let activeLeague = 'ipl'; // Variable to store the active league
 
-// Logo icon helper
-function teamIcon(file) {
+// Icon helper
+function teamIcon(file, size) {
   return L.icon({
-    iconUrl: `logos/${file}`,
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-    popupAnchor: [0, -40]
+    iconUrl: `logos/${activeLeague}/${file}`,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size],
+    popupAnchor: [0, -size]
   });
 }
 
-// League datasets (IPL, PKL, ISL) — already filled in earlier
 // League datasets
 const leagues = {
   ipl: [
@@ -67,101 +69,127 @@ const leagues = {
   ]
 };
 
-
-const activeLayer = L.layerGroup();
-const stateLayer = L.layerGroup();
+// Layers & data
+const stateLayer = L.layerGroup().addTo(map);
+const markerLayer = L.layerGroup().addTo(map);
+let activeMarkers = {};
 let indiaGeoJson = null;
 
-// Add markers
-function addTeamMarkers(teams, layer) {
-  layer.clearLayers();
+function addTeamMarkers(teams) {
+  markerLayer.clearLayers();
+  activeMarkers = {};
   teams.forEach(team => {
-    const marker = L.marker(team.coords, { icon: teamIcon(team.logo) })
-      .bindPopup(`<b>${team.name}</b><br>${team.stadium}`);
-
-    marker.on('click', () => {
-      map.flyTo(team.coords, 8, { animate:true, duration:1.5 });
-      const iconEl = marker._icon;
-      if (iconEl) {
-        iconEl.classList.add('pulse');
-        setTimeout(() => iconEl.classList.remove('pulse'), 400);
-      }
-      if (indiaGeoJson) flashState(team, indiaGeoJson);
-    });
-
-    marker.addTo(layer);
+    const marker = L.marker(team.coords, { icon: teamIcon(team.logo, 35) });
+    marker.addTo(markerLayer);
+    activeMarkers[team.name] = marker;
   });
 }
 
-// State coloring
-function addStateColors(teams, layer, geojsonData) {
-  layer.clearLayers();
+function addStateLayer(teams, geojsonData) {
+  stateLayer.clearLayers();
+
+  const teamsByState = {};
   teams.forEach(team => {
-    L.geoJSON(geojsonData, {
-      filter: f => f.properties.st_nm === team.state,
-      style: {
-        color: "#333",
-        weight: 1.5,
-        fillColor: team.color || "#ccc",
-        fillOpacity: 0.6,
-        dashArray: "3"
-      }
-    }).addTo(layer);
+    if (!teamsByState[team.state]) teamsByState[team.state] = [];
+    teamsByState[team.state].push(team);
   });
+
+  const geoJsonLayer = L.geoJSON(geojsonData, {
+    style: feature => {
+      const stateName = feature.properties.st_nm;
+      const stateTeams = teamsByState[stateName];
+      if (stateTeams) {
+        return {
+          color: "#555",
+          weight: 1.5,
+          fillColor: stateTeams[0].color,
+          fillOpacity: 0.7
+        };
+      } else {
+        return { fillOpacity: 0, weight: 0 };
+      }
+    },
+    onEachFeature: (feature, layer) => {
+      const stateName = feature.properties.st_nm;
+      const stateTeams = teamsByState[stateName];
+
+      if (stateTeams) {
+        layer.on({
+          mouseover: (e) => e.target.setStyle({ weight: 2.5 }),
+          mouseout: (e) => geoJsonLayer.resetStyle(e.target),
+          click: () => {
+            const team = stateTeams[0];
+            map.flyTo(team.coords, 11, { animate: true, duration: 1.5 });
+            flashState(team, geojsonData);
+
+            Object.values(activeMarkers).forEach(m => m.setIcon(teamIcon(m.options.icon.options.iconUrl.split('/').pop(), 35)));
+            const bigMarker = activeMarkers[team.name];
+            if (bigMarker) {
+              bigMarker.setIcon(teamIcon(team.logo, 60));
+            }
+          }
+        });
+      }
+    }
+  }).addTo(stateLayer);
 }
 
-// Flash highlight on click
 function flashState(team, geojsonData) {
-  const layer = L.geoJSON(geojsonData, {
+  const flashLayer = L.geoJSON(geojsonData, {
     filter: f => f.properties.st_nm === team.state,
-    style: {
-      color: team.color || "#999",
-      fillColor: team.color || "#999",
-      fillOpacity: 0.8
+    style: { 
+      weight: 3,
+      color: team.color,
+      fillOpacity: 0
     }
   }).addTo(map);
-  setTimeout(() => map.removeLayer(layer), 1500);
+  setTimeout(() => map.removeLayer(flashLayer), 1500);
 }
 
-// Load GeoJSON
 fetch('india.geojson')
   .then(res => res.json())
   .then(data => {
     indiaGeoJson = data;
-    loadLeague("ipl"); // default load IPL
+    loadLeague("ipl");
+    setActiveButton(document.querySelector('.league-options button[data-league="ipl"]'));
+    setActiveButton(document.querySelector('.theme-options button[data-theme="dark"]'));
   });
 
-// Load league data
 function loadLeague(leagueKey) {
-  activeLayer.clearLayers();
-  stateLayer.clearLayers();
+  activeLeague = leagueKey; // Set the active league
   const teams = leagues[leagueKey];
-  addTeamMarkers(teams, activeLayer);
-  if (indiaGeoJson) addStateColors(teams, stateLayer, indiaGeoJson);
-  activeLayer.addTo(map);
-  stateLayer.addTo(map);
+  addTeamMarkers(teams);
+  if (indiaGeoJson) {
+    addStateLayer(teams, indiaGeoJson);
+  }
 }
 
-// Burger menu toggle
-document.getElementById("burger").addEventListener("click", () => {
-  document.getElementById("menuItems").classList.toggle("hidden");
+function setActiveButton(button) {
+    const parent = button.parentElement;
+    parent.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+}
+
+document.querySelector('.panel-tab').addEventListener('click', () => {
+    document.getElementById('edge-panel').classList.toggle('open');
 });
 
-// Menu item click
-document.querySelectorAll("#menuItems button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const league = btn.getAttribute("data-league");
-    const theme = btn.getAttribute("data-theme");
+document.querySelectorAll(".league-options button").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    const league = e.currentTarget.getAttribute("data-league");
+    if (league) loadLeague(league);
+    setActiveButton(e.currentTarget);
+  });
+});
 
-    if (league) {
-      loadLeague(league);
-    }
+document.querySelectorAll(".theme-options button").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    const theme = e.currentTarget.getAttribute("data-theme");
     if (theme) {
       map.removeLayer(currentTheme);
       currentTheme = themes[theme];
       currentTheme.addTo(map);
+      setActiveButton(e.currentTarget);
     }
-
-    document.getElementById("menuItems").classList.add("hidden");
   });
 });
