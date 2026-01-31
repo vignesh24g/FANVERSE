@@ -106,3 +106,24 @@ body, html {
   50% { transform: scale(1.2); }
   100% { transform: scale(1); }
 }
+
+#reset-button-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+#reset-view {
+  background: rgba(0,0,0,0.7);
+  color: #eee;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#reset-view:hover {
+  background: rgba(0,0,0,0.9);
+}

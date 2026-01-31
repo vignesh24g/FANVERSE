@@ -193,3 +193,10 @@ document.querySelectorAll(".theme-options button").forEach(btn => {
     }
   });
 });
+
+document.getElementById('reset-view').addEventListener('click', () => {
+  map.flyTo([20.5937, 78.9629], 5, {
+    animate: true,
+    duration: 1.5
+  });
+});
