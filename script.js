@@ -1,5 +1,5 @@
 const map = L.map('map', {
-  minZoom: 4, // Adjusted for Australia
+  minZoom: 4, 
   maxBounds: [
     [-90, -180],
     [90, 180]
@@ -21,7 +21,10 @@ let activeLeague = 'ipl';
 // Centers and zooms for different regions
 const regionViews = {
     india: { center: [20.5937, 78.9629], zoom: 5 },
-    australia: { center: [-25.2744, 133.7751], zoom: 5 }
+    australia: { center: [-25.2744, 133.7751], zoom: 5 },
+    'south-africa': { center: [-29.0, 24.0], zoom: 6 },
+    uae: { center: [24.0, 54.0], zoom: 8 },
+    caribbean: { center: [12.0, -68.0], zoom: 6 }
 };
 
 // Icon helper
@@ -91,11 +94,44 @@ const leagues = {
         { name: "Adelaide Strikers", stadium: "Adelaide Oval", coords: [-34.9165, 138.5999], logo: "rcb.png", state: "South Australia", color: "#00BFFF" },
         { name: "Brisbane Heat", stadium: "The Gabba", coords: [-27.4860, 153.0377], logo: "rcb.png", state: "Queensland", color: "#00CED1" },
         { name: "Hobart Hurricanes", stadium: "Blundstone Arena", coords: [-42.8753, 147.3499], logo: "rcb.png", state: "Tasmania", color: "#8A2BE2" },
-        { name: "Melbourne Renegades", stadium: "Marvel Stadium", coords: [-37.8164, 144.9475], logo: "rcb.png", state: "Victoria", color: "#DC143C" },
-        { name: "Melbourne Stars", stadium: "MCG", coords: [-37.8250, 142.9890], logo: "rcb.png", state: "Victoria", color: "#32CD32" },
+        { name: "Melbourne Renegades", stadium: "Marvel Stadium", coords: [-37.81, 144.94], logo: "rcb.png", state: "Victoria", color: "#DC143C" },
+        { name: "Melbourne Stars", stadium: "MCG", coords: [-37.83, 142.99], logo: "rcb.png", state: "Victoria", color: "#32CD32" },
         { name: "Perth Scorchers", stadium: "Optus Stadium", coords: [-31.9511, 115.8891], logo: "rcb.png", state: "Western Australia", color: "#FF8C00" },
-        { name: "Sydney Sixers", stadium: "SCG", coords: [-31.8911, 151.2257], logo: "rcb.png", state: "New South Wales", color: "#FF69B4" },
-        { name: "Sydney Thunder", stadium: "Sydney Showground Stadium", coords: [-33.8450, 151.0600], logo: "rcb.png", state: "New South Wales", color: "#00FF00" }
+        { name: "Sydney Sixers", stadium: "SCG", coords: [-31.89, 151.22], logo: "rcb.png", state: "New South Wales", color: "#FF69B4" },
+        { name: "Sydney Thunder", stadium: "Sydney Showground Stadium", coords: [-33.84, 151.06], logo: "rcb.png", state: "New South Wales", color: "#00FF00" }
+    ]
+  },
+   sa20: {
+    region: 'south-africa',
+    teams: [
+        { name: "Durban's Super Giants", stadium: "Kingsmead", coords: [-29.8587, 31.0253], logo: "rcb.png", color: "#008751" },
+        { name: "Joburg Super Kings", stadium: "Wanderers Stadium", coords: [-26.55, 28.05], logo: "rcb.png", color: "#FDB913" },
+        { name: "MI Cape Town", stadium: "Newlands", coords: [-33.9712, 18.4651], logo: "rcb.png", color: "#00AEEF" },
+        { name: "Paarl Royals", stadium: "Boland Park", coords: [-31.7381, 18.9682], logo: "rcb.png", color: "#EC008C" },
+        { name: "Pretoria Capitals", stadium: "Centurion Park", coords: [-24.85, 28.20], logo: "rcb.png", color: "#0078C9" },
+        { name: "Sunrisers Eastern Cape", stadium: "St George's Park", coords: [-33.9613, 25.6109], logo: "rcb.png", color: "#FF7F00" }
+    ]
+  },
+  ilt20: {
+    region: 'uae',
+    teams: [
+        { name: "Abu Dhabi Knight Riders", stadium: "Sheikh Zayed Cricket Stadium", coords: [24.4347, 54.6236], logo: "rcb.png", color: "#5A287D" },
+        { name: "Desert Vipers", stadium: "Dubai International Stadium", coords: [25.0426, 55.7156], logo: "rcb.png", color: "#E53935" },
+        { name: "Dubai Capitals", stadium: "Dubai International Stadium", coords: [25.0526, 55.2056], logo: "rcb.png", color: "#0078C9" },
+        { name: "Gulf Giants", stadium: "Dubai International Stadium", coords: [24.0326, 55.2256], logo: "rcb.png", color: "#FF8C00" },
+        { name: "MI Emirates", stadium: "Sheikh Zayed Cricket Stadium", coords: [23.4447, 53.6136], logo: "rcb.png", color: "#00AEEF" },
+        { name: "Sharjah Warriors", stadium: "Sharjah Cricket Stadium", coords: [25.3375, 55.4058], logo: "rcb.png", color: "#FDB913" }
+    ]
+  },
+  cpl: {
+      region: 'caribbean',
+      teams: [
+        { name: "Barbados Royals", stadium: "Kensington Oval", coords: [13.1075, -59.6200], logo: "rcb.png", color: "#EC008C" },
+        { name: "Guyana Amazon Warriors", stadium: "Providence Stadium", coords: [6.7628, -58.1722], logo: "rcb.png", color: "#008751" },
+        { name: "Jamaica Tallawahs", stadium: "Sabina Park", coords: [17.9733, -76.7867], logo: "rcb.png", color: "#FDB913" },
+        { name: "St Kitts & Nevis Patriots", stadium: "Warner Park", coords: [17.2942, -62.7236], logo: "rcb.png", color: "#E53935" },
+        { name: "Saint Lucia Kings", stadium: "Daren Sammy Cricket Ground", coords: [13.9841, -60.9704], logo: "rcb.png", color: "#0078C9" },
+        { name: "Trinbago Knight Riders", stadium: "Queen's Park Oval", coords: [10.6653, -61.5218], logo: "rcb.png", color: "#5A287D" }
     ]
   }
 };
@@ -199,10 +235,16 @@ function loadLeague(leagueKey) {
   map.flyTo(view.center, view.zoom, { animate: true, duration: 1.5 });
   addTeamMarkers(leagueData.teams);
   stateLayer.clearLayers();
-  if (activeLeague === 'bbl') {
+
+  let radius = 80000; // Default radius
+  if (activeLeague === 'ilt20') {
+    radius = 18000; // Smaller radius for ILT20
+  }
+
+  if (['bbl', 'sa20', 'ilt20', 'cpl'].includes(activeLeague)) {
     leagueData.teams.forEach(team => {
         const circle = L.circle(team.coords, {
-            radius: 80000,
+            radius: radius,
             fillColor: team.color,
             color: team.color,
             weight: 2,
@@ -246,7 +288,7 @@ document.querySelectorAll(".league-options button").forEach(btn => {
 
 document.querySelectorAll(".theme-options button").forEach(btn => {
   btn.addEventListener("click", (e) => {
-    const theme = e.currentTarget.getAttribute("data-theme");
+    const theme = e.currentTarget.getAttribute('data-theme');
     if (theme) {
       map.removeLayer(currentTheme);
       currentTheme = themes[theme];
