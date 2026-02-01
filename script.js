@@ -187,6 +187,7 @@ document.querySelectorAll(".league-options button").forEach(btn => {
     const league = e.currentTarget.getAttribute("data-league");
     if (league) loadLeague(league);
     setActiveButton(e.currentTarget);
+    document.getElementById('edge-panel').classList.remove('open');
   });
 });
 
@@ -198,6 +199,7 @@ document.querySelectorAll(".theme-options button").forEach(btn => {
       currentTheme = themes[theme];
       currentTheme.addTo(map);
       setActiveButton(e.currentTarget);
+      document.getElementById('edge-panel').classList.remove('open');
     }
   });
 });
@@ -207,4 +209,5 @@ document.getElementById('reset-view').addEventListener('click', () => {
     animate: true,
     duration: 1.5
   });
+  document.getElementById('edge-panel').classList.remove('open');
 });
