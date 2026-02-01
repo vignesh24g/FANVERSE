@@ -183,7 +183,6 @@ document.querySelectorAll(".league-options button").forEach(btn => {
     const league = e.currentTarget.getAttribute("data-league");
     if (league) loadLeague(league);
     setActiveButton(e.currentTarget);
-    document.getElementById('edge-panel').classList.remove('open');
   });
 });
 
@@ -195,7 +194,6 @@ document.querySelectorAll(".theme-options button").forEach(btn => {
       currentTheme = themes[theme];
       currentTheme.addTo(map);
       setActiveButton(e.currentTarget);
-      document.getElementById('edge-panel').classList.remove('open');
     }
   });
 });
@@ -205,5 +203,13 @@ document.getElementById('reset-view').addEventListener('click', () => {
     animate: true,
     duration: 1.5
   });
+  loadLeague(activeLeague);
   document.getElementById('edge-panel').classList.remove('open');
+});
+
+// Close the menu when a button inside the panel is clicked.
+document.querySelector('.panel-content').addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON') {
+        document.getElementById('edge-panel').classList.remove('open');
+    }
 });
