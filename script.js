@@ -159,7 +159,21 @@ fetch('india.geojson')
     setActiveButton(document.querySelector('.theme-options button[data-theme="dark"]'));
   });
 
+function showLeagueLogo(leagueKey) {
+  const overlay = document.getElementById('league-logo-overlay');
+  const logoImg = document.getElementById('league-logo-img');
+
+  logoImg.src = `logos/${leagueKey}/${leagueKey}.png`; // Assumes a convention like ipl.png, pkl.png
+
+  overlay.classList.add('show');
+
+  setTimeout(() => {
+    overlay.classList.remove('show');
+  }, 1500); // Sync with CSS animation duration
+}
+
 function loadLeague(leagueKey) {
+  showLeagueLogo(leagueKey);
   activeLeague = leagueKey; // Set the active league
   const teams = leagues[leagueKey];
   addTeamMarkers(teams);
