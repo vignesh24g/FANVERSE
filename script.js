@@ -21,10 +21,10 @@ let activeLeague = 'ipl';
 // Centers and zooms for different regions
 const regionViews = {
     india: { center: [20.5937, 78.9629], zoom: 5 },
-    australia: { center: [-25.2744, 133.7751], zoom: 5 },
+    australia: { center: [-33, 135], zoom: 4 },
     'south-africa': { center: [-29.0, 24.0], zoom: 6 },
     uae: { center: [24.0, 54.0], zoom: 8 },
-    caribbean: { center: [12.0, -68.0], zoom: 6 }
+    caribbean: { center: [15, -68], zoom: 5 }
 };
 
 // Icon helper

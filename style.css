@@ -157,9 +157,6 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 2000;
   pointer-events: none;
   visibility: hidden;
@@ -174,7 +171,10 @@ html {
 }
 
 #league-logo-img {
-  width: 220px; /* Made bigger */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 220px;
   height: auto;
   opacity: 0;
 }
@@ -185,15 +185,49 @@ html {
 
 @keyframes popAndRotate {
   0% {
-    transform: scale(0.2) rotate(-90deg);
+    transform: translate(-50%, -50%) scale(0.2) rotate(-90deg);
     opacity: 0;
   }
   50% {
-    transform: scale(1.2) rotate(360deg);
+    transform: translate(-50%, -50%) scale(1.2) rotate(360deg);
     opacity: 1;
   }
   100% {
-    transform: scale(0.8) rotate(720deg);
+    transform: translate(-50%, -50%) scale(0.8) rotate(720deg);
     opacity: 0;
+  }
+}
+@media (max-width: 768px) {
+  #edge-panel {
+    width: 100%;
+    right: -100%;
+    border-left: none;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  #edge-panel.open {
+    right: 0;
+  }
+
+  .panel-tab {
+    left: -40px;
+    height: 70px;
+    width: 40px;
+    border-radius: 10px 0 0 10px;
+  }
+
+  #reset-button-container {
+    bottom: auto;
+    top: 15px;
+    left: 15px;
+  }
+
+  #reset-view {
+    width: 45px;
+    height: 45px;
+  }
+
+  #league-logo-img {
+    width: 150px;
   }
 }
