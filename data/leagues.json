@@ -1,0 +1,942 @@
+{
+ "regions": {
+  "india": {
+   "center": [
+    22.8,
+    80.5
+   ],
+   "zoom": 5
+  },
+  "australia": {
+   "center": [
+    -28.5,
+    134.5
+   ],
+   "zoom": 4
+  },
+  "south-africa": {
+   "center": [
+    -29.0,
+    24.5
+   ],
+   "zoom": 6
+  },
+  "uae": {
+   "center": [
+    24.8,
+    54.8
+   ],
+   "zoom": 8
+  },
+  "caribbean": {
+   "center": [
+    14.5,
+    -67.0
+   ],
+   "zoom": 5,
+   "halo": 55000
+  }
+ },
+ "leagues": {
+  "ipl": {
+   "name": "Indian Premier League",
+   "short": "IPL",
+   "region": "india",
+   "color": "#1E5BFF",
+   "sport": "cricket",
+   "teams": [
+    {
+     "id": "csk",
+     "name": "Chennai Super Kings",
+     "short": "CSK",
+     "stadium": "M.A. Chidambaram Stadium",
+     "coords": [
+      13.0628,
+      80.2793
+     ],
+     "state": "Tamil Nadu",
+     "color": "#F9CD05"
+    },
+    {
+     "id": "mi",
+     "name": "Mumbai Indians",
+     "short": "MI",
+     "stadium": "Wankhede Stadium",
+     "coords": [
+      18.9389,
+      72.8258
+     ],
+     "state": "Maharashtra",
+     "color": "#0B5FB4"
+    },
+    {
+     "id": "rcb",
+     "name": "Royal Challengers Bengaluru",
+     "short": "RCB",
+     "stadium": "M. Chinnaswamy Stadium",
+     "coords": [
+      12.9788,
+      77.5996
+     ],
+     "state": "Karnataka",
+     "color": "#D1202F"
+    },
+    {
+     "id": "kkr",
+     "name": "Kolkata Knight Riders",
+     "short": "KKR",
+     "stadium": "Eden Gardens",
+     "coords": [
+      22.5645,
+      88.3433
+     ],
+     "state": "West Bengal",
+     "color": "#5B2A86"
+    },
+    {
+     "id": "dc",
+     "name": "Delhi Capitals",
+     "short": "DC",
+     "stadium": "Arun Jaitley Stadium",
+     "coords": [
+      28.6377,
+      77.2432
+     ],
+     "state": "Delhi",
+     "color": "#17479E"
+    },
+    {
+     "id": "srh",
+     "name": "Sunrisers Hyderabad",
+     "short": "SRH",
+     "stadium": "Rajiv Gandhi Intl. Stadium",
+     "coords": [
+      17.4065,
+      78.5505
+     ],
+     "state": "Telangana",
+     "color": "#F26522"
+    },
+    {
+     "id": "rr",
+     "name": "Rajasthan Royals",
+     "short": "RR",
+     "stadium": "Sawai Mansingh Stadium",
+     "coords": [
+      26.894,
+      75.804
+     ],
+     "state": "Rajasthan",
+     "color": "#E4328C"
+    },
+    {
+     "id": "pbks",
+     "name": "Punjab Kings",
+     "short": "PBKS",
+     "stadium": "IS Bindra Stadium, Mohali",
+     "coords": [
+      30.691,
+      76.737
+     ],
+     "state": "Punjab",
+     "color": "#C8102E"
+    },
+    {
+     "id": "gt",
+     "name": "Gujarat Titans",
+     "short": "GT",
+     "stadium": "Narendra Modi Stadium",
+     "coords": [
+      23.0917,
+      72.597
+     ],
+     "state": "Gujarat",
+     "color": "#1C2C5B"
+    },
+    {
+     "id": "lsg",
+     "name": "Lucknow Super Giants",
+     "short": "LSG",
+     "stadium": "BRSABV Ekana Stadium",
+     "coords": [
+      26.81,
+      81.02
+     ],
+     "state": "Uttar Pradesh",
+     "color": "#00A8A8"
+    }
+   ]
+  },
+  "pkl": {
+   "name": "Pro Kabaddi League",
+   "short": "PKL",
+   "region": "india",
+   "color": "#F26A1B",
+   "sport": "kabaddi",
+   "teams": [
+    {
+     "id": "patna",
+     "name": "Patna Pirates",
+     "short": "PAT",
+     "stadium": "Patliputra Sports Complex",
+     "coords": [
+      25.611,
+      85.144
+     ],
+     "state": "Bihar",
+     "color": "#0E9F6E"
+    },
+    {
+     "id": "bulls",
+     "name": "Bengaluru Bulls",
+     "short": "BLR",
+     "stadium": "Kanteerava Indoor Stadium",
+     "coords": [
+      12.9699,
+      77.595
+     ],
+     "state": "Karnataka",
+     "color": "#E03C31"
+    },
+    {
+     "id": "delhi",
+     "name": "Dabang Delhi K.C.",
+     "short": "DEL",
+     "stadium": "Thyagaraj Sports Complex",
+     "coords": [
+      28.581,
+      77.236
+     ],
+     "state": "Delhi",
+     "color": "#D7263D"
+    },
+    {
+     "id": "jaipur",
+     "name": "Jaipur Pink Panthers",
+     "short": "JPP",
+     "stadium": "SMS Indoor Stadium",
+     "coords": [
+      26.894,
+      75.804
+     ],
+     "state": "Rajasthan",
+     "color": "#E4328C"
+    },
+    {
+     "id": "umumba",
+     "name": "U Mumba",
+     "short": "UMU",
+     "stadium": "NSCI Dome, Worli",
+     "coords": [
+      19.01,
+      72.819
+     ],
+     "state": "Maharashtra",
+     "color": "#F58220"
+    },
+    {
+     "id": "titans",
+     "name": "Telugu Titans",
+     "short": "TT",
+     "stadium": "Gachibowli Indoor Stadium",
+     "coords": [
+      17.44,
+      78.3489
+     ],
+     "state": "Telangana",
+     "color": "#F2B705"
+    },
+    {
+     "id": "bengal",
+     "name": "Bengal Warriors",
+     "short": "BEN",
+     "stadium": "Netaji Indoor Stadium",
+     "coords": [
+      22.553,
+      88.343
+     ],
+     "state": "West Bengal",
+     "color": "#3FA7E0"
+    },
+    {
+     "id": "puneri",
+     "name": "Puneri Paltan",
+     "short": "PUN",
+     "stadium": "Balewadi Sports Complex",
+     "coords": [
+      18.575,
+      73.716
+     ],
+     "state": "Maharashtra",
+     "color": "#E8731A"
+    },
+    {
+     "id": "thalaivas",
+     "name": "Tamil Thalaivas",
+     "short": "TAM",
+     "stadium": "Jawaharlal Nehru Indoor Stadium",
+     "coords": [
+      13.083,
+      80.268
+     ],
+     "state": "Tamil Nadu",
+     "color": "#E6B800"
+    },
+    {
+     "id": "upyoddha",
+     "name": "UP Yoddhas",
+     "short": "UPY",
+     "stadium": "Babu Banarasi Das Indoor Stadium",
+     "coords": [
+      26.8467,
+      80.9462
+     ],
+     "state": "Uttar Pradesh",
+     "color": "#1F4FA3"
+    },
+    {
+     "id": "steelers",
+     "name": "Haryana Steelers",
+     "short": "HAR",
+     "stadium": "Tau Devi Lal Stadium, Panchkula",
+     "coords": [
+      30.6942,
+      76.8606
+     ],
+     "state": "Haryana",
+     "color": "#2F6EA5"
+    },
+    {
+     "id": "giants",
+     "name": "Gujarat Giants",
+     "short": "GUJ",
+     "stadium": "EKA Arena, Ahmedabad",
+     "coords": [
+      23.0225,
+      72.5714
+     ],
+     "state": "Gujarat",
+     "color": "#C2571A"
+    }
+   ]
+  },
+  "isl": {
+   "name": "Indian Super League",
+   "short": "ISL",
+   "region": "india",
+   "color": "#7B2FF7",
+   "sport": "football",
+   "teams": [
+    {
+     "id": "bfc",
+     "name": "Bengaluru FC",
+     "short": "BFC",
+     "stadium": "Sree Kanteerava Stadium",
+     "coords": [
+      12.9699,
+      77.595
+     ],
+     "state": "Karnataka",
+     "color": "#1D4ED8"
+    },
+    {
+     "id": "cfc",
+     "name": "Chennaiyin FC",
+     "short": "CFC",
+     "stadium": "Jawaharlal Nehru Stadium, Chennai",
+     "coords": [
+      13.06,
+      80.273
+     ],
+     "state": "Tamil Nadu",
+     "color": "#1B2A6B"
+    },
+    {
+     "id": "cbfc",
+     "name": "Churchill Brothers FC",
+     "short": "CBF",
+     "stadium": "Margao, Goa (home city)",
+     "coords": [
+      15.2993,
+      73.958
+     ],
+     "state": "Goa",
+     "color": "#991B1B"
+    },
+    {
+     "id": "ebfc",
+     "name": "East Bengal FC",
+     "short": "EBF",
+     "stadium": "Salt Lake Stadium",
+     "coords": [
+      22.5726,
+      88.4096
+     ],
+     "state": "West Bengal",
+     "color": "#D62828"
+    },
+    {
+     "id": "fcg",
+     "name": "FC Goa",
+     "short": "FCG",
+     "stadium": "Fatorda Stadium",
+     "coords": [
+      15.287,
+      73.959
+     ],
+     "state": "Goa",
+     "color": "#F77F00"
+    },
+    {
+     "id": "ikfc",
+     "name": "Inter Kashi FC",
+     "short": "IKF",
+     "stadium": "Varanasi (home city)",
+     "coords": [
+      25.3176,
+      82.9739
+     ],
+     "state": "Uttar Pradesh",
+     "color": "#0EA5E9"
+    },
+    {
+     "id": "kbfc",
+     "name": "Kerala Blasters FC",
+     "short": "KBF",
+     "stadium": "Jawaharlal Nehru Stadium, Kochi",
+     "coords": [
+      9.997,
+      76.301
+     ],
+     "state": "Kerala",
+     "color": "#F4C20D"
+    },
+    {
+     "id": "mbsg",
+     "name": "Mohun Bagan Super Giant",
+     "short": "MBSG",
+     "stadium": "Salt Lake Stadium",
+     "coords": [
+      22.5726,
+      88.4096
+     ],
+     "state": "West Bengal",
+     "color": "#1E7B4F"
+    },
+    {
+     "id": "mcfc",
+     "name": "Mumbai City FC",
+     "short": "MCFC",
+     "stadium": "Mumbai Football Arena",
+     "coords": [
+      19.136,
+      72.829
+     ],
+     "state": "Maharashtra",
+     "color": "#62B5E5"
+    },
+    {
+     "id": "neufc",
+     "name": "NorthEast United FC",
+     "short": "NEU",
+     "stadium": "Indira Gandhi Athletic Stadium",
+     "coords": [
+      26.105,
+      91.738
+     ],
+     "state": "Assam",
+     "color": "#E63946"
+    },
+    {
+     "id": "ofc",
+     "name": "Odisha FC",
+     "short": "OFC",
+     "stadium": "Kalinga Stadium",
+     "coords": [
+      20.2961,
+      85.8245
+     ],
+     "state": "Odisha",
+     "color": "#7A1FA2"
+    },
+    {
+     "id": "pfc",
+     "name": "Punjab FC",
+     "short": "PFC",
+     "stadium": "Jawaharlal Nehru Stadium, Delhi",
+     "coords": [
+      28.5826,
+      77.234
+     ],
+     "state": "Delhi",
+     "color": "#C1121F"
+    },
+    {
+     "id": "scd",
+     "name": "Sporting Club Delhi",
+     "short": "SCD",
+     "stadium": "Delhi (home city)",
+     "coords": [
+      28.6139,
+      77.209
+     ],
+     "state": "Delhi",
+     "color": "#16A34A"
+    }
+   ]
+  },
+  "hil": {
+   "name": "Hockey India League",
+   "short": "HIL",
+   "region": "india",
+   "color": "#10B981",
+   "sport": "hockey",
+   "teams": [
+    {
+     "id": "dragons",
+     "name": "Tamil Nadu Dragons",
+     "short": "TND",
+     "stadium": "Mayor Radhakrishnan Hockey Stadium, Chennai",
+     "coords": [
+      13.0688,
+      80.263
+     ],
+     "state": "Tamil Nadu",
+     "color": "#0EA5A4"
+    },
+    {
+     "id": "toofans",
+     "name": "Hyderabad Toofans",
+     "short": "HYT",
+     "stadium": "Hyderabad (home city)",
+     "coords": [
+      17.385,
+      78.4867
+     ],
+     "state": "Telangana",
+     "color": "#2563EB"
+    },
+    {
+     "id": "soorma",
+     "name": "Soorma Hockey Club",
+     "short": "SHC",
+     "stadium": "Jalandhar (home city)",
+     "coords": [
+      31.326,
+      75.5762
+     ],
+     "state": "Punjab",
+     "color": "#F59E0B"
+    },
+    {
+     "id": "tigers",
+     "name": "Shrachi Bengal Tigers",
+     "short": "SBT",
+     "stadium": "Kolkata (home city)",
+     "coords": [
+      22.5726,
+      88.3639
+     ],
+     "state": "West Bengal",
+     "color": "#F97316"
+    },
+    {
+     "id": "lancers",
+     "name": "Kalinga Lancers",
+     "short": "KAL",
+     "stadium": "Kalinga Stadium, Bhubaneswar",
+     "coords": [
+      20.2961,
+      85.8245
+     ],
+     "state": "Odisha",
+     "color": "#B91C1C"
+    },
+    {
+     "id": "royals",
+     "name": "Ranchi Royals",
+     "short": "RAN",
+     "stadium": "Jaipal Singh Stadium, Ranchi",
+     "coords": [
+      23.3441,
+      85.3096
+     ],
+     "state": "Jharkhand",
+     "color": "#DB2777"
+    },
+    {
+     "id": "pipers",
+     "name": "SG Pipers",
+     "short": "SGP",
+     "stadium": "Major Dhyan Chand National Stadium, Delhi",
+     "coords": [
+      28.6115,
+      77.237
+     ],
+     "state": "Delhi",
+     "color": "#7C3AED"
+    }
+   ]
+  },
+  "bbl": {
+   "name": "Big Bash League",
+   "short": "BBL",
+   "region": "australia",
+   "color": "#00B2A9",
+   "sport": "cricket",
+   "teams": [
+    {
+     "id": "strikers",
+     "name": "Adelaide Strikers",
+     "short": "ADS",
+     "stadium": "Adelaide Oval",
+     "coords": [
+      -34.9156,
+      138.5961
+     ],
+     "state": "South Australia",
+     "color": "#0A6CCB"
+    },
+    {
+     "id": "heat",
+     "name": "Brisbane Heat",
+     "short": "BRH",
+     "stadium": "The Gabba",
+     "coords": [
+      -27.4858,
+      153.0381
+     ],
+     "state": "Queensland",
+     "color": "#00A6A6"
+    },
+    {
+     "id": "hurricanes",
+     "name": "Hobart Hurricanes",
+     "short": "HOH",
+     "stadium": "Bellerive Oval",
+     "coords": [
+      -42.8794,
+      147.3736
+     ],
+     "state": "Tasmania",
+     "color": "#7B3FE4"
+    },
+    {
+     "id": "renegades",
+     "name": "Melbourne Renegades",
+     "short": "MLR",
+     "stadium": "Marvel Stadium",
+     "coords": [
+      -37.8165,
+      144.9475
+     ],
+     "state": "Victoria",
+     "color": "#D7263D"
+    },
+    {
+     "id": "stars",
+     "name": "Melbourne Stars",
+     "short": "MLS",
+     "stadium": "Melbourne Cricket Ground",
+     "coords": [
+      -37.82,
+      144.9834
+     ],
+     "state": "Victoria",
+     "color": "#2EBD59"
+    },
+    {
+     "id": "scorchers",
+     "name": "Perth Scorchers",
+     "short": "PRS",
+     "stadium": "Optus Stadium",
+     "coords": [
+      -31.9512,
+      115.889
+     ],
+     "state": "Western Australia",
+     "color": "#F7941D"
+    },
+    {
+     "id": "sixers",
+     "name": "Sydney Sixers",
+     "short": "SYS",
+     "stadium": "Sydney Cricket Ground",
+     "coords": [
+      -33.8914,
+      151.2247
+     ],
+     "state": "New South Wales",
+     "color": "#E83E8C"
+    },
+    {
+     "id": "thunder",
+     "name": "Sydney Thunder",
+     "short": "SYT",
+     "stadium": "Sydney Showground Stadium",
+     "coords": [
+      -33.8442,
+      151.0675
+     ],
+     "state": "New South Wales",
+     "color": "#9BE31B"
+    }
+   ]
+  },
+  "sa20": {
+   "name": "SA20",
+   "short": "SA20",
+   "region": "south-africa",
+   "color": "#E0A100",
+   "sport": "cricket",
+   "teams": [
+    {
+     "id": "dsg",
+     "name": "Durban's Super Giants",
+     "short": "DSG",
+     "stadium": "Kingsmead, Durban",
+     "coords": [
+      -29.8506,
+      31.0309
+     ],
+     "state": "KwaZulu-Natal",
+     "color": "#0B8F5B"
+    },
+    {
+     "id": "jsk",
+     "name": "Joburg Super Kings",
+     "short": "JSK",
+     "stadium": "The Wanderers, Johannesburg",
+     "coords": [
+      -26.1317,
+      28.06
+     ],
+     "state": "Gauteng",
+     "color": "#F7B500"
+    },
+    {
+     "id": "mict",
+     "name": "MI Cape Town",
+     "short": "MICT",
+     "stadium": "Newlands, Cape Town",
+     "coords": [
+      -33.9712,
+      18.4651
+     ],
+     "state": "Western Cape",
+     "color": "#1E88E5"
+    },
+    {
+     "id": "par",
+     "name": "Paarl Royals",
+     "short": "PRL",
+     "stadium": "Boland Park, Paarl",
+     "coords": [
+      -33.736,
+      18.9644
+     ],
+     "state": "Western Cape",
+     "color": "#E4328C"
+    },
+    {
+     "id": "pc",
+     "name": "Pretoria Capitals",
+     "short": "PTC",
+     "stadium": "SuperSport Park, Centurion",
+     "coords": [
+      -25.861,
+      28.171
+     ],
+     "state": "Gauteng",
+     "color": "#0A66C2"
+    },
+    {
+     "id": "sec",
+     "name": "Sunrisers Eastern Cape",
+     "short": "SEC",
+     "stadium": "St George's Park, Gqeberha",
+     "coords": [
+      -33.936,
+      25.599
+     ],
+     "state": "Eastern Cape",
+     "color": "#F57C00"
+    }
+   ]
+  },
+  "ilt20": {
+   "name": "International League T20",
+   "short": "ILT20",
+   "region": "uae",
+   "color": "#14B8A6",
+   "sport": "cricket",
+   "teams": [
+    {
+     "id": "adkr",
+     "name": "Abu Dhabi Knight Riders",
+     "short": "ADKR",
+     "stadium": "Sheikh Zayed Stadium, Abu Dhabi",
+     "coords": [
+      24.3951,
+      54.5272
+     ],
+     "state": "Abu Dhabi",
+     "color": "#5B2A86"
+    },
+    {
+     "id": "dv",
+     "name": "Desert Vipers",
+     "short": "DV",
+     "stadium": "Dubai International Stadium",
+     "coords": [
+      25.0457,
+      55.2178
+     ],
+     "state": "Dubai",
+     "color": "#E53935"
+    },
+    {
+     "id": "dc",
+     "name": "Dubai Capitals",
+     "short": "DUC",
+     "stadium": "Dubai International Stadium",
+     "coords": [
+      25.0457,
+      55.2178
+     ],
+     "state": "Dubai",
+     "color": "#1565C0"
+    },
+    {
+     "id": "gg",
+     "name": "Gulf Giants",
+     "short": "GG",
+     "stadium": "Sharjah Cricket Stadium",
+     "coords": [
+      25.3306,
+      55.415
+     ],
+     "state": "Sharjah",
+     "color": "#FB8C00"
+    },
+    {
+     "id": "mie",
+     "name": "MI Emirates",
+     "short": "MIE",
+     "stadium": "Sheikh Zayed Stadium, Abu Dhabi",
+     "coords": [
+      24.3951,
+      54.5272
+     ],
+     "state": "Abu Dhabi",
+     "color": "#00A3E0"
+    },
+    {
+     "id": "sw",
+     "name": "Sharjah Warriors",
+     "short": "SHW",
+     "stadium": "Sharjah Cricket Stadium",
+     "coords": [
+      25.3306,
+      55.415
+     ],
+     "state": "Sharjah",
+     "color": "#F2B400"
+    }
+   ]
+  },
+  "cpl": {
+   "name": "Caribbean Premier League",
+   "short": "CPL",
+   "region": "caribbean",
+   "color": "#E11D48",
+   "sport": "cricket",
+   "teams": [
+    {
+     "id": "abf",
+     "name": "Antigua & Barbuda Falcons",
+     "short": "ABF",
+     "stadium": "Sir Vivian Richards Stadium, Antigua",
+     "coords": [
+      17.0769,
+      -61.7878
+     ],
+     "state": "Antigua and Barbuda",
+     "color": "#F97316"
+    },
+    {
+     "id": "br",
+     "name": "Barbados Tridents",
+     "short": "BAR",
+     "stadium": "Kensington Oval, Bridgetown",
+     "coords": [
+      13.1,
+      -59.6086
+     ],
+     "state": "Barbados",
+     "color": "#E4328C"
+    },
+    {
+     "id": "gaw",
+     "name": "Guyana Amazon Warriors",
+     "short": "GAW",
+     "stadium": "Providence Stadium",
+     "coords": [
+      6.7706,
+      -58.2022
+     ],
+     "state": "Guyana",
+     "color": "#0B8F5B"
+    },
+    {
+     "id": "jk",
+     "name": "Jamaica Kingsmen",
+     "short": "JAM",
+     "stadium": "Sabina Park, Kingston",
+     "coords": [
+      17.9786,
+      -76.7822
+     ],
+     "state": "Jamaica",
+     "color": "#F2B400"
+    },
+    {
+     "id": "skn",
+     "name": "St Kitts & Nevis Patriots",
+     "short": "SKN",
+     "stadium": "Warner Park, Basseterre",
+     "coords": [
+      17.3086,
+      -62.74
+     ],
+     "state": "St. Kitts and Nevis",
+     "color": "#D62828"
+    },
+    {
+     "id": "slk",
+     "name": "Saint Lucia Kings",
+     "short": "SLK",
+     "stadium": "Daren Sammy Ground, Gros Islet",
+     "coords": [
+      14.0187,
+      -60.9494
+     ],
+     "state": "Saint Lucia",
+     "color": "#1565C0"
+    },
+    {
+     "id": "tkr",
+     "name": "Trinbago Knight Riders",
+     "short": "TKR",
+     "stadium": "Queen's Park Oval, Port of Spain",
+     "coords": [
+      10.6638,
+      -61.5183
+     ],
+     "state": "Trinidad and Tobago",
+     "color": "#5B2A86"
+    }
+   ]
+  }
+ }
+}

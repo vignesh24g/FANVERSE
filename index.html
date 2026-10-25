@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FANVERSE: explore franchise leagues on an interactive map. IPL, PKL, ISL, BBL, SA20, ILT20 and CPL." />
+  <title>FANVERSE · Sports Map</title>
+  <link rel="stylesheet" href="vendor/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="map" aria-label="Interactive sports map"></div>
+
+  <header id="league-chip" aria-live="polite">
+    <img id="chip-logo" alt="" width="36" height="36" />
+    <div><strong id="chip-name"></strong><span id="chip-count"></span></div>
+  </header>
+
+  <div id="league-splash" aria-hidden="true"><img id="splash-logo" alt="" /></div>
+
+  <aside id="edge-panel" aria-label="Map controls">
+    <button class="panel-tab" id="panel-toggle" aria-expanded="false" aria-controls="panel-content" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="panel-content" id="panel-content">
+      <h2>Leagues</h2>
+      <div class="options-grid" id="league-options" role="group" aria-label="Leagues"></div>
+      <h2>Teams</h2>
+      <ul id="team-list"></ul>
+      <h2>Demo</h2>
+      <button id="tour" class="wide">Play tour</button>
+      <h2>Map style</h2>
+      <div class="options-grid" id="theme-options" role="group" aria-label="Map style">
+        <button data-theme="dark">Dark</button>
+        <button data-theme="light">Light</button>
+        <button data-theme="classic">Classic</button>
+        <button data-theme="forest">Forest</button>
+        <button data-theme="neon">Neon</button>
+        <button data-theme="ocean">Ocean</button>
+      </div>
+    </div>
+  </aside>
+
+  <button id="reset-view" aria-label="Reset view" title="Reset view">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+  </button>
+
+  <aside id="card" hidden></aside>
+
+  <div id="toast" role="status"></div>
+
+  <script src="vendor/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
